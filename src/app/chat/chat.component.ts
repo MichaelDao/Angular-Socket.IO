@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  toDoList = ['yeet', 'yeeted'];
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit() {
   }
 
+  addToDo(value) {
+    // this.toDoList.push(value);
+    this.http.post('/chat', {
+      description: value
+    }).subscribe()
+  }
 }
